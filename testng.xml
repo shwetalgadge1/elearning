@@ -3,11 +3,12 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-      
+      <class name="com.Utils.TestListener"/>
       <class name="com.test.LoginTestPage"/>
-     
+      <class name="com.Utils.ExtentReport"/>
+      <class name="com.Utils.Listener"/>
       <class name="com.test.RegistrationTestPage"/>
-    
+      <class name="com.Utils.ExcelDataProvider"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

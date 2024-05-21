@@ -3,13 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.Utils.ExtentReport">
+      <class name="com.test.ProfessorRegistrationTest">
         <methods>
+          <include name="alreadyHaveAccountTest"/>
           <include name="tearDown"/>
+          <include name="createNewAccountTest"/>
           <include name="setUp"/>
-          <include name="loginTest"/>
         </methods>
-      </class> <!-- com.Utils.ExtentReport -->
+      </class> <!-- com.test.ProfessorRegistrationTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
