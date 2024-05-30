@@ -1,64 +1,63 @@
-
 package com.test;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-	
-	
-
-    import org.openqa.selenium.By;
-
-    import org.openqa.selenium.WebDriver;
-    import org.openqa.selenium.WebElement;
-    import org.openqa.selenium.chrome.ChromeDriver;
-    import org.testng.Assert;
-    import org.testng.annotations.AfterTest;
-    import org.testng.annotations.BeforeTest;
-    import org.testng.annotations.Test;
-
-import com.Base.Base;
+import com.pom.LoginPage;
+import com.Base.TestBase;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-    public class LoginTestPage extends Base{
-    
-        WebDriver driver;
 
-        @BeforeTest
-        public void setup() {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            driver.get("https://www.facebook.com/");
-            driver.manage().window().maximize();
-        }
+import static org.testng.Assert.assertTrue;
 
-        @Test
-        public void loginTest() {
-            WebElement usernameField = driver.findElement(By.xpath("//input[@id='email']"));
-            WebElement passwordField = driver.findElement(By.xpath("//input[@id='pass']"));
-            WebElement loginButton = driver.findElement(By.xpath("//button[@name='login']"));
+public class LoginTestPage extends TestBase {
+    private WebDriver driver;
+    private LoginPage loginPage;
 
-            
-            usernameField.sendKeys("shwetal@gmail.com");
-            passwordField.sendKeys("shwetal");
+    @BeforeClass
+    public void setUp() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        initializeDriver(driver);
+        loginPage = new LoginPage(driver);
+        driver.get("http://example.com/login");
+    }
 
-        
-            loginButton.click();
-            try {
-				Thread.sleep(7000);
-			} catch (InterruptedException e) {
-				
-				e.printStackTrace();
-			}
+    private void initializeDriver(WebDriver driver2) {
+		// TODO Auto-generated method stub
+		
+	}
 
-           
-            String actualUrl = "https://www.facebook.com/";
-            String expectedUrl = driver.getCurrentUrl();
-            Assert.assertEquals(expectedUrl, actualUrl);
-        }
+	@AfterClass
+    public void tearDown() {
+        quitDriver(driver);
+    }
 
-        @AfterTest
-        public void teardown() {
-            driver.quit();
-        }}
-    
+    private void quitDriver(WebDriver driver2) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Test
+    public void testUserLogin() {
+        loginPage.performLogin("userOption", "user@example.com", "password123");
+        assertTrue(driver.findElement(By.id("logoutButton")).isDisplayed(), "Login failed for User");
+    }
 
+    @Test
+    public void testProfessorLogin() {
+        loginPage.performLogin("professorOption", "professor@example.com", "password123");
+        assertTrue(driver.findElement(By.id("logoutButton")).isDisplayed(), "Login failed for Professor");
+    }
+
+    @Test
+    public void testAdminLogin() {
+        loginPage.performLogin("adminOption", "admin@example.com", "password123");
+        assertTrue(driver.findElement(By.id("logoutButton")).isDisplayed(), "Login failed for Admin");
+    }
+}

@@ -1,6 +1,7 @@
 package com.Utils;
 import org.testng.ITestContext;
 
+
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.BeforeClass;
@@ -70,7 +71,7 @@ public class Listener {
         public void onTestFailure(ITestResult result) {
             System.out.println("Test Failed: " + result.getName());
 
-            // Take screenshot on test failure
+         
             File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             String screenshotPath = "C:\\eclipse-workspace\\quantumsoft_1\\resources\\testdata\\failedtestcase1.bmp" + result.getName() + ".bmp";
 
@@ -89,12 +90,12 @@ public class Listener {
 
         @Override
         public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-            // 
+             
         }
 
         @Override
         public void onStart(ITestContext context) {
-            // 
+             
         }
 
         @Override

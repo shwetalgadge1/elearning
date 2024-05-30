@@ -3,14 +3,21 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.test.ProfessorRegistrationTest">
+      <class name="com.test.AdminDashboardTest">
         <methods>
-          <include name="alreadyHaveAccountTest"/>
-          <include name="tearDown"/>
-          <include name="createNewAccountTest"/>
-          <include name="setUp"/>
+          <include name="testLearnersSection"/>
+          <include name="testApproveProfessor"/>
+          <include name="testCourseList"/>
+          <include name="teardown"/>
+          <include name="testCoursesSection"/>
+          <include name="testProfessorsSection"/>
+          <include name="testUsersSection"/>
+          <include name="testAddChapter"/>
+          <include name="testAddCourse"/>
+          <include name="setup"/>
+          <include name="testAddProfessor"/>
         </methods>
-      </class> <!-- com.test.ProfessorRegistrationTest -->
+      </class> <!-- com.test.AdminDashboardTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
