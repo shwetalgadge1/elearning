@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import com.Base.TestBase;
 
-public class ProfessorRegistrationPage extends TestBase{
+public class AdminRegistraionPage extends TestBase {
     private WebDriver driver;
 
     @FindBy(id = "name")
@@ -32,11 +32,8 @@ public class ProfessorRegistrationPage extends TestBase{
     @FindBy(id = "department")
     private WebElement departmentInput;
 
-    @FindBy(id = "experience")
-    private WebElement experienceInput;
-
-    @FindBy(id = "terms")
-    private WebElement termsCheckbox;
+    @FindBy(id = "designation")
+    private WebElement designationInput; // New input field for admin registration
 
     @FindBy(id = "register")
     private WebElement registerButton;
@@ -47,7 +44,7 @@ public class ProfessorRegistrationPage extends TestBase{
     @FindBy(id = "closePage")
     private WebElement closePageButton; // Add the cross button element
 
-    public ProfessorRegistrationPage(WebDriver driver) {
+    public AdminRegistraionPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -81,12 +78,8 @@ public class ProfessorRegistrationPage extends TestBase{
         departmentInput.sendKeys(department);
     }
 
-    public void enterExperience(String experience) {
-        experienceInput.sendKeys(experience);
-    }
-
-    public void checkTermsAndConditions() {
-        termsCheckbox.click();
+    public void enterDesignation(String designation) {
+        designationInput.sendKeys(designation); // Method to enter designation for admin
     }
 
     public void clickRegister() {

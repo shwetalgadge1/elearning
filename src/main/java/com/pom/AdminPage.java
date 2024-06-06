@@ -4,9 +4,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import com.Base.TestBase;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class AdminPage {
+public class AdminPage extends TestBase{
 
     @FindBy(id = "username")
     private WebElement usernameField;

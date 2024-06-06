@@ -5,7 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AdminDashboard {
+import com.Base.TestBase;
+
+public class AdminDashboard extends TestBase {
 
     @FindBy(id = "username")
     WebElement usernameField;

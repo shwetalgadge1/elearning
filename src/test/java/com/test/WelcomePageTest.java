@@ -5,15 +5,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 import com.Base.TestBase;
-import com.pom.HomePage;
+import com.pom.WelcomePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
+
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
-public class HomePageTest extends TestBase {
+public class WelcomePageTest extends TestBase {
 
-    private HomePage homePage;
+    private WelcomePage homePage;
 
-    public HomePageTest() {
+    public WelcomePageTest() {
         super();
     }
 
@@ -22,10 +24,15 @@ public class HomePageTest extends TestBase {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         navigateToHomePage("https://yourwebsite.com");
-        homePage = new HomePage(driver);
+        homePage = new WelcomePage(driver);
     }
 
-    @Test
+    private void navigateToHomePage(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Test
     public void testClickHome() {
         homePage.clickHome();
         assertEquals("https://yourwebsite.com/home", driver.getCurrentUrl());
@@ -133,13 +140,35 @@ public class HomePageTest extends TestBase {
         assertEquals("https://yourwebsite.com/contact-us", driver.getCurrentUrl());
     }
 
+    // Add tests for the new elements
+    @Test
+    public void testClickSlideBar() {
+        homePage.clickSlideBar();
+        // Add assertion to verify the slide bar functionality if applicable
+        // For now, you might not have any URL change to assert
+        assertTrue(homePage.isLogoDisplayed(), "Slide bar clicked and logo is displayed.");
+    }
+
+    @Test
+    public void testClickLogoutButton() {
+        homePage.clickLogoutButton();
+        // Add assertion to verify the logout functionality, e.g., redirected to login page
+        assertEquals("https://yourwebsite.com/login", driver.getCurrentUrl());
+    }
+
+    @Test
+    public void testTechBrilanceLogoDisplayed() {
+        assertTrue(homePage.isLogoDisplayed(), "TechBrilance logo should be displayed");
+    }
+
     @AfterMethod
     public void tearDown() {
         quitDriver();
     }
 
-	private void quitDriver() {
-		// TODO Auto-generated method stub
-		
-	}
+    private void quitDriver() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }

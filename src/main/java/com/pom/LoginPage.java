@@ -1,4 +1,3 @@
-
 package com.pom;
 
 import org.openqa.selenium.By;
@@ -29,6 +28,9 @@ public class LoginPage extends TestBase {
 
     @FindBy(id = "submitLogin")
     private WebElement submitButton;
+
+    @FindBy(id = "crossButton")
+    private WebElement crossButton; // Add the cross button element
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -66,6 +68,10 @@ public class LoginPage extends TestBase {
         setPassword(password);
         clickRememberMeCheckbox();
         clickSubmitButton();
+    }
+
+    public void clickCrossButton() {
+        crossButton.click(); // Method to click the cross button
     }
 
 	public void loginAsUser(String string, String string2) {

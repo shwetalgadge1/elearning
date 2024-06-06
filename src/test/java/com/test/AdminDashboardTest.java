@@ -26,7 +26,7 @@ public class AdminDashboardTest extends TestBase {
 
     @BeforeClass
     public void setup() {
-        WebDriverManager.chromedriver().setup();
+       WebDriverManager.chromedriver().setup();
         driver = getDriver(); // Initialize driver from TestBase
         adminDashboard = new AdminDashboard(driver); // Pass driver to AdminDashboard
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); // Implicit wait

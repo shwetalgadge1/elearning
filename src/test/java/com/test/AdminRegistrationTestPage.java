@@ -15,7 +15,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 import java.util.concurrent.TimeUnit;
 
-public class ProfessorRegistrationTest extends TestBase {
+public class AdminRegistrationTestPage extends TestBase {
     private WebDriver driver;
 
     @BeforeClass
@@ -23,38 +23,35 @@ public class ProfessorRegistrationTest extends TestBase {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://example.com/registration");
+        driver.get("https://example.com/admin/registration");
     }
 
     @Test(priority = 1)
-    public void createNewAccountTest() {
-        WebElement professorNameInput = driver.findElement(By.id("name"));
-        professorNameInput.sendKeys("John Doe");
+    public void createNewAdminAccountTest() {
+        WebElement adminNameInput = driver.findElement(By.id("name"));
+        adminNameInput.sendKeys("Admin User");
 
         WebElement genderDropdown = driver.findElement(By.id("gender"));
         Select genderSelect = new Select(genderDropdown);
         genderSelect.selectByVisibleText("Male");  // or "Female"
 
         WebElement emailInput = driver.findElement(By.id("email"));
-        emailInput.sendKeys("john.doe@example.com");
+        emailInput.sendKeys("admin@example.com");
 
         WebElement mobileInput = driver.findElement(By.id("mobileNumber"));
         mobileInput.sendKeys("1234567890");
 
-        WebElement addressInput = driver.findElement(By.id("address"));
-        addressInput.sendKeys("123 Main Street, City, Country");
-
         WebElement departmentInput = driver.findElement(By.id("department"));
-        departmentInput.sendKeys("Computer Science");
+        departmentInput.sendKeys("Administration");
 
-        WebElement experienceInput = driver.findElement(By.id("experience"));
-        experienceInput.sendKeys("5");
+        WebElement designationInput = driver.findElement(By.id("designation"));
+        designationInput.sendKeys("Admin"); // Entering designation for admin
 
         WebElement passwordInput = driver.findElement(By.id("password"));
-        passwordInput.sendKeys("Password123!");
+        passwordInput.sendKeys("AdminPassword123!");
 
         WebElement confirmPasswordInput = driver.findElement(By.id("confirmPassword"));
-        confirmPasswordInput.sendKeys("Password123!");
+        confirmPasswordInput.sendKeys("AdminPassword123!");
 
         WebElement agreeCheckbox = driver.findElement(By.id("terms"));
         agreeCheckbox.click();

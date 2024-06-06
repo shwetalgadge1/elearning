@@ -38,6 +38,9 @@ public class UserDashboardPage extends TestBase {
     @FindBy(id = "users")
     private WebElement users;
 
+    @FindBy(id = "reviewButton") // Assuming the review button has an ID "reviewButton"
+    private WebElement reviewButton; // New WebElement for the review button
+
     public void login(String username, String password) {
         // Write login logic here
     }
@@ -82,8 +85,12 @@ public class UserDashboardPage extends TestBase {
         // Write logic to enroll in a course
     }
 
-	public boolean isWelcomeMessageDisplayed() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    public void clickReviewButton() {
+        reviewButton.click(); // Method to click the review button
+    }
+
+    public boolean isWelcomeMessageDisplayed() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }

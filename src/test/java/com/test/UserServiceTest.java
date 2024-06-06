@@ -30,10 +30,18 @@ public class UserServiceTest extends TestBase {
         user.setGender("Male");
         user.setDepartment("IT");
         user.setCity("New York");
+        user.setEmail("john.doe@example.com");
+        user.setExperience("5 years");
         user.setPassword("Password1!");
         user.setConfirmPassword("Password1!");
 
         assertTrue(userService.registerUser(user));
         userRegistration.fillRegistrationForm(user);
+    }
+
+    @Test
+    public void testCloseRegistrationPage() {
+        userRegistration.closeRegistrationPage();
+        // Verify that the page is closed
     }
 }

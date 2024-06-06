@@ -19,6 +19,7 @@ import com.pom.UserDashboardPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class UserDashboardTest extends TestBase{
     private WebDriver driver;
@@ -112,7 +113,24 @@ public class UserDashboardTest extends TestBase{
         WebElement userDetails = driver.findElement(By.id("userDetails"));
         assertEquals(userDetails.isDisplayed(), true);
     }
+    @Test
+    public void testReviewButtonFunctionality() {
+        WebElement reviewButton = driver.findElement(By.id("reviewButton"));
+        reviewButton.click();
 
+        WebElement reviewTextArea = driver.findElement(By.id("reviewTextArea"));
+        reviewTextArea.sendKeys("This course is excellent!");
+
+        WebElement submitReviewButton = driver.findElement(By.id("submitReviewButton"));
+        submitReviewButton.click();
+
+        // Wait for the review to be saved (you might need to implement waits)
+        // Assert that the review is saved in the database
+        // Example: Assert that the review is displayed on the main page
+        WebElement mainPage = driver.findElement(By.id("mainPage"));
+        String reviewTextOnMainPage = mainPage.getText();
+        assertTrue(reviewTextOnMainPage.contains("This course is excellent!"));
+    }
     @AfterTest
     public void tearDown() {
         driver.quit();

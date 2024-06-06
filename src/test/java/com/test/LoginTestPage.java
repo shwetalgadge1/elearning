@@ -2,7 +2,6 @@ package com.test;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -28,22 +27,22 @@ public class LoginTestPage extends TestBase {
         driver.get("http://example.com/login");
     }
 
-    private void initializeDriver(WebDriver driver2) {
-		// TODO Auto-generated method stub
-		
-	}
+    private void initializeDriver(WebDriver driver) {
+        // Initialization code here
+    }
 
-	@AfterClass
+    @AfterClass
     public void tearDown() {
         quitDriver(driver);
     }
 
-    private void quitDriver(WebDriver driver2) {
-		// TODO Auto-generated method stub
-		
-	}
+    private void quitDriver(WebDriver driver) {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
-	@Test
+    @Test
     public void testUserLogin() {
         loginPage.performLogin("userOption", "user@example.com", "password123");
         assertTrue(driver.findElement(By.id("logoutButton")).isDisplayed(), "Login failed for User");
@@ -59,5 +58,13 @@ public class LoginTestPage extends TestBase {
     public void testAdminLogin() {
         loginPage.performLogin("adminOption", "admin@example.com", "password123");
         assertTrue(driver.findElement(By.id("logoutButton")).isDisplayed(), "Login failed for Admin");
+    }
+
+    @Test
+    public void testCrossButtonFunctionality() {
+        loginPage.performLogin("userOption", "user@example.com", "password123");
+        assertTrue(driver.findElement(By.id("logoutButton")).isDisplayed(), "Login failed for User");
+        loginPage.clickCrossButton();
+        assertTrue(driver.findElement(By.id("welcomePageElement")).isDisplayed(), "Failed to navigate back to the welcome page");
     }
 }

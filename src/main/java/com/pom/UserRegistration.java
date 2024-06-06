@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import com.Base.TestBase;
 
@@ -22,6 +23,8 @@ public class UserRegistration extends TestBase {
         private String city;
         private String password;
         private String confirmPassword;
+        private String email;
+        private String experience;
 
         // Getters and Setters
         public String getName() { return name; }
@@ -38,14 +41,10 @@ public class UserRegistration extends TestBase {
         public void setPassword(String password) { this.password = password; }
         public String getConfirmPassword() { return confirmPassword; }
         public void setConfirmPassword(String confirmPassword) { this.confirmPassword = confirmPassword; }
-		public CharSequence getEmail() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		public CharSequence getExperience() {
-			// TODO Auto-generated method stub
-			return null;
-		}
+        public String getEmail() { return email; }
+        public void setEmail(String email) { this.email = email; }
+        public String getExperience() { return experience; }
+        public void setExperience(String experience) { this.experience = experience; }
     }
 
     public class UserService {
@@ -105,9 +104,12 @@ public class UserRegistration extends TestBase {
     @FindBy(name = "register")
     private WebElement registerButton;
 
+    @FindBy(id = "closeButton")
+    private WebElement closeButton;
+
     public void fillRegistrationForm(User user) {
         professorNameInput.sendKeys(user.getName());
-        genderSelect.sendKeys(user.getGender());
+        selectGender(user.getGender());
         emailInput.sendKeys(user.getEmail());
         mobileInput.sendKeys(user.getMobileNumber());
         addressInput.sendKeys(user.getCity());
@@ -118,5 +120,14 @@ public class UserRegistration extends TestBase {
         eyeButton.click();
         agreeCheckbox.click();
         registerButton.click();
+    }
+
+    public void selectGender(String gender) {
+        Select genderDropdown = new Select(genderSelect);
+        genderDropdown.selectByVisibleText(gender);
+    }
+
+    public void closeRegistrationPage() {
+        closeButton.click();
     }
 }
